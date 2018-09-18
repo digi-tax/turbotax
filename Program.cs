@@ -33,9 +33,9 @@ namespace turbotax_explorer
             aes_csp.Key = Encoding.UTF8.GetBytes("5TGB@YHN7UJM(IK(");
 
             string str_manifest = "";
-            using (ICryptoTransform transform = aes_csp.CreateDecryptor())
+            using (ICryptoTransform crypto_transf = aes_csp.CreateDecryptor())
             {
-                byte[] buffer = transform.TransformFinalBlock(manifest_xmlfile, 0, manifest_xmlfile.Length);
+                byte[] buffer = crypto_transf.TransformFinalBlock(manifest_xmlfile, 0, manifest_xmlfile.Length);
 
                 str_manifest = Encoding.UTF8.GetString(buffer);
             }
@@ -55,11 +55,11 @@ namespace turbotax_explorer
             aes_csp.Key = Encoding.UTF8.GetBytes("4TGB@YHN7UJM(IK(");
 
             string str_tax_return = "";
-            using (ICryptoTransform transform = aes_csp.CreateDecryptor())
+            using (ICryptoTransform crypto_transf = aes_csp.CreateDecryptor())
             {
-                byte[] buffer = transform.TransformFinalBlock(tax_return_xml_encrypted, 0, tax_return_xml_encrypted.Length);
+                byte[] tax_return_2017 = crypto_transf.TransformFinalBlock(tax_return_xml_encrypted, 0, tax_return_xml_encrypted.Length);
 
-                str_tax_return = Encoding.UTF8.GetString(buffer);
+                str_tax_return = Encoding.UTF8.GetString(tax_return_2017);
             }
 
             Console.WriteLine(str_tax_return);
