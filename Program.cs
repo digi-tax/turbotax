@@ -15,7 +15,7 @@ namespace turbotax_explorer
         {
             string turbotax2017_data_container = @"Form_1040_Individual_Tax_Return.tax2017";
 
-            ZipFile zf = new ZipFile(turbotax2017_data_container);
+            ZipFile zf = new ZipFile(turbotax2017_data_container); // unzip the file with Ionic.Zip
             zf.CompressionMethod = CompressionMethod.Deflate;
             zf.CompressionLevel = Ionic.Zlib.CompressionLevel.BestSpeed;
             zf.Encryption = EncryptionAlgorithm.WinZipAes256;
