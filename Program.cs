@@ -35,9 +35,9 @@ namespace turbotax_explorer
             string str_manifest = "";
             using (ICryptoTransform crypto_transf = aes_csp.CreateDecryptor())
             {
-                byte[] buffer = crypto_transf.TransformFinalBlock(manifest_xmlfile, 0, manifest_xmlfile.Length);
+                byte[] manifest_xml_data = crypto_transf.TransformFinalBlock(manifest_xmlfile, 0, manifest_xmlfile.Length);
 
-                str_manifest = Encoding.UTF8.GetString(buffer);
+                str_manifest = Encoding.UTF8.GetString(manifest_xml_data);
             }
             Console.WriteLine(str_manifest);
 
