@@ -23,7 +23,7 @@ namespace turbotax_explorer
 
             AesCryptoServiceProvider aes_csp = new AesCryptoServiceProvider();
 
-            byte[] manif = File.ReadAllBytes("manifest.xml");
+            byte[] manifest_xmlfile = File.ReadAllBytes("manifest.xml");
 
             aes_csp.Mode = CipherMode.CBC;
             aes_csp.Padding = PaddingMode.PKCS7;
@@ -35,7 +35,7 @@ namespace turbotax_explorer
             string str_manifest = "";
             using (ICryptoTransform transform = aes_csp.CreateDecryptor())
             {
-                byte[] buffer = transform.TransformFinalBlock(manif, 0, manif.Length);
+                byte[] buffer = transform.TransformFinalBlock(manifest_xmlfile, 0, manifest_xmlfile.Length);
 
                 str_manifest = Encoding.UTF8.GetString(buffer);
             }
