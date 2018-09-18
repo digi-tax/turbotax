@@ -63,7 +63,7 @@ namespace turbotax_explorer
             }
 
             Console.WriteLine(str_tax_return);
-            Console.WriteLine("Intuit's point of view on data security. 10 out of 10.");
+            Console.WriteLine("Intuit's genius point of view on data security. 10 out of 10.");
         }
     }
 }
