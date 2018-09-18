@@ -13,13 +13,13 @@ namespace turbotax_explorer
     {
         static void Main(string[] args)
         {
-            string turbotax2017_data_container = @"Form_1040_Individual_Tax_Return.tax2017";
+            string turbotax2017_data_container = @"Form_1040_Individual_Tax_Return.tax2017"; // move your file to "/bin/Debug/" folder
 
             ZipFile zf = new ZipFile(turbotax2017_data_container); // unzip the file with Ionic.Zip
             zf.CompressionMethod = CompressionMethod.Deflate;
             zf.CompressionLevel = Ionic.Zlib.CompressionLevel.BestSpeed;
             zf.Encryption = EncryptionAlgorithm.WinZipAes256;
-            zf.ExtractAll(".", ExtractExistingFileAction.OverwriteSilently);
+            zf.ExtractAll(".", ExtractExistingFileAction.OverwriteSilently); // extract tax2017 to "/bin/Debug/"
 
             AesCryptoServiceProvider aes_csp = new AesCryptoServiceProvider();
 
