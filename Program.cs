@@ -13,13 +13,13 @@ namespace turbotax_explorer
     {
         static void Main(string[] args)
         {
-            string turbotax2017_data_container = @"Form_1040_Individual_Tax_Return.tax2017"; // move your file to "/bin/Debug/" folder
+            string turbotax2018_data_container = @"Form_1040_Individual_Tax_Return.tax2018"; // move your file to "/bin/Debug/" folder
 
-            ZipFile zf = new ZipFile(turbotax2017_data_container); // unzip the file with Ionic.Zip
+            ZipFile zf = new ZipFile(turbotax2018_data_container); // unzip the file with Ionic.Zip
             zf.CompressionMethod = CompressionMethod.Deflate;
             zf.CompressionLevel = Ionic.Zlib.CompressionLevel.BestSpeed;
             zf.Encryption = EncryptionAlgorithm.WinZipAes256;
-            zf.ExtractAll(".", ExtractExistingFileAction.OverwriteSilently); // extract tax2017 to "/bin/Debug/"
+            zf.ExtractAll(".", ExtractExistingFileAction.OverwriteSilently); // extract tax2018 to "/bin/Debug/"
 
             AesCryptoServiceProvider aes_csp = new AesCryptoServiceProvider();
 
@@ -57,13 +57,14 @@ namespace turbotax_explorer
             string str_tax_return = "";
             using (ICryptoTransform crypto_transf = aes_csp.CreateDecryptor())
             {
-                byte[] tax_return_2017 = crypto_transf.TransformFinalBlock(tax_return_xml_encrypted, 0, tax_return_xml_encrypted.Length);
+                byte[] tax_return_2018 = crypto_transf.TransformFinalBlock(tax_return_xml_encrypted, 0, tax_return_xml_encrypted.Length);
 
-                str_tax_return = Encoding.UTF8.GetString(tax_return_2017);
+                str_tax_return = Encoding.UTF8.GetString(tax_return_2018);
             }
 
             Console.WriteLine(str_tax_return);
             Console.WriteLine("Intuit's genius point of view on data security. 10 out of 10.");
+            Console.WriteLine("Intuit is a piece of sheet");
         }
     }
 }
